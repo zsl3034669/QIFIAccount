@@ -4,7 +4,7 @@ import json
 import click
 from qaenv import mongo_ip
 from QAPUBSUB import producer
-
+import time
 from QIFIAccount.QARealtimeStockSim import QIFI_StockSIM_Account
 from QUANTAXIS.QAUtil.QAParameter import (EXCHANGE_ID, MARKET_TYPE,
                                           ORDER_DIRECTION)
@@ -24,6 +24,7 @@ def qasimStock(user, password, eventmq_ip, eventmq_port, trade_host):
     acc.log(acc.message)
 
     while 1:
+        time.sleep(2.58)
         pass
 
 
