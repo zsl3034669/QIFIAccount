@@ -8,6 +8,25 @@ pip install qifiaccount
 ```
 
 
+QIFIAccount/ QIFI的订书机的时间序列处理模式将兼容回测
+
+--- timeseries => [QIFI, QIFI, QIFI, ... , QIFI..]
+
+具体可以参考QIFIManager中的管理代码
+
+```
+QIFIAccount 中引入了 frozen 冻结的概念, 因此在 send_order 用法的时候, 会进行 order_check
+
+--  平仓的时候的仓位影响会体现在 frozen 中
+
+--  receive_deal 的时候再结算  恢复frozen | 仓位结算
+
+```
+
+
+
+
+
 ### 用法:
 
 参见 /usage 文件夹下的ipython notebook
