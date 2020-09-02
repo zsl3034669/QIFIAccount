@@ -215,8 +215,13 @@ class QIFI_Account():
 
     def settle(self):
         self.log('settle')
-        self.db.history.update_one({'account_cookie': self.user_id, 'trading_day': self.trading_day}, {
-                '$set': self.message}, upsert=True)
+        if self.model == "BACKTEST":
+            ## 数据库: quantaxis.history
+            self.db.history.update({'account_cookie': self.user_id, 'trading_day': self.trading_day}, {
+            '$set': self.message}, upsert=True)
+        else:
+            self.db.hisaccount.update_one({'account_cookie': self.user_id, 'trading_day': self.trading_day}, {
+                    '$set': self.message}, upsert=True)
         self.pre_balance += (self.deposit - self.withdraw + self.close_profit)
         self.static_balance = self.pre_balance
 
